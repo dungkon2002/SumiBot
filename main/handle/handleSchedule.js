@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 import logger from "../../utils/log.js";
 
-export default function({
+export default function ({
     api,
     global,
     client,
@@ -11,7 +11,7 @@ export default function({
     ThreadSettings
 }) {
 
-    setInterval(function() {
+    setInterval(function () {
         const time = moment().utcOffset("+07:00").unix();
         var dataJob = client.schedule || [],
             spliced;
@@ -31,13 +31,13 @@ export default function({
                         ThreadSettings,
                         scheduleItem
                     });
-                    spliced = dataJob.filter(function(item) {
+                    spliced = dataJob.filter(function (item) {
                         return item.event.messageID !== item.event.messageID
                     });
                     client.schedule = spliced;
                 } catch (e) {
                     logger(e + " tại schedule: " + command.config.name, "error");
-                    spliced = dataJob.filter(function(item) {
+                    spliced = dataJob.filter(function (item) {
                         return item.event.messageID !== item.event.messageID
                     });
                     client.schedule = spliced;

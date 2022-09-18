@@ -6,8 +6,8 @@ export default {
 	description: "Test Code nhanh",
 	shortDescription: "Test Code nhanh",
 	usages: [
-	    'run: bla bla'
-    ],
+		'run: bla bla'
+	],
 	cooldowns: 5
 };
 
@@ -25,7 +25,7 @@ export async function run({ api, global, client, utils, ThreadsAll, UsersAll, Th
 		}
 
 		if (typeof a === "number") a = a.toString();
-		
+
 		return api.sendMessage(a, event.threadID, event.messageID);
 	}
 	try {

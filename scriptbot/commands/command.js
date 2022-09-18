@@ -6,9 +6,9 @@ export default {
 	description: "Không làm phiền bot sẽ không tag bạn",
 	shortDescription: "Không làm phiền",
 	usages: [
-	    'busy: bật chế độ không làm phiền',
+		'busy: bật chế độ không làm phiền',
 		'busy <xxxx>: bật chế độ không làm phiền với lý do: <xxxx>'
-    ],
+	],
 	cooldowns: 5
 };
 import logger from "../../utils/log.js"
@@ -16,17 +16,17 @@ import fs from "fs-extra"
 
 
 const load = async ({ name, event, api, client, global, loadAll }) => {
-	
+
 	try {
-	import (`../../scriptbot/commands/${name}.js`)	
-	client.commands.delete(name);
+		import(`../../scriptbot/commands/${name}.js`)
+		client.commands.delete(name);
 	}
 	catch (e) {
 		console.log(e)
 		return api.sendMessage(`Không tìm thấy module: ${name}.js`, event.threadID, event.messageID);
 	}
 	try {
-		const command = await import (`../../scriptbot/commands/${name}.js`);
+		const command = await import(`../../scriptbot/commands/${name}.js`);
 		if (client.commands.has(command.default.name || "")) throw logger(`module ${name} bị trùng với một module mang cùng tên`, "FAIL");
 		const nameModule = command.default.name;
 		if (command.onLoad) {
@@ -43,7 +43,7 @@ const load = async ({ name, event, api, client, global, loadAll }) => {
 			client.commandRegister.set("event", registerCommand);
 		};
 		client.commands.set(command.default.name, command);
-		
+
 		logger(`[ COMMAND ] » FILE: ${name}.js | NAME: ${nameModule} | Loading: Succes!`, "DONE");
 		if (loadAll == true) return
 		else return api.sendMessage(`Load command [ ${command.default.name} ] done!`, event.threadID);
@@ -66,7 +66,7 @@ export async function run({ event, api, global, client, args, utils }) {
 				await new Promise(resolve => setTimeout(resolve, 1 * 1000));
 			}
 		}
-		break;
+			break;
 		case "loadAll": {
 			const commandFiles = fs.readdirSync(client.dirMain + `/scriptbot/commands`).filter((file) => file.endsWith(".js"));;
 			client.commands.clear();
@@ -76,9 +76,9 @@ export async function run({ event, api, global, client, args, utils }) {
 			}
 			api.sendMessage("loadAll success", event.threadID, event.messageID);
 		}
-		break;
+			break;
 		default:
 			utils.throwError(this.default.name, event.threadID, event.messageID);
-		break;
+			break;
 	}
 }

@@ -7,7 +7,7 @@ export default {
 	shortDescription: "Tạo twitter Trum",
 	usages: [
 		'fact <xxxx>: <nhập nội dung>'
-    ],
+	],
 	cooldowns: 5
 };
 import Canvas from "canvas"
@@ -16,8 +16,8 @@ import ps, { dirname } from "path";
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export async function run({ api, event, args, utils }) {
-	try { 
-        
+	try {
+
 		function wrapText(ctx, text, maxWidth) {
 			return new Promise(resolve => {
 				if (ctx.measureText(text).width < maxWidth) return resolve([text]);
@@ -45,9 +45,9 @@ export async function run({ api, event, args, utils }) {
 				}
 				return resolve(lines);
 			});
-		} 
+		}
 
-		
+
 		let { threadID, messageID } = event;
 		let pathImg = ps.resolve(__dirname, 'cache', `trum.png`);
 		const __root = ps.resolve(__dirname, "cache", "rank");
@@ -72,13 +72,13 @@ export async function run({ api, event, args, utils }) {
 			ctx.font = `regular ${fontSize}px Linotte`;
 		}
 		const lines = await wrapText(ctx, text, 740);
-		ctx.fillText(lines.join('\n'), 72,145);
+		ctx.fillText(lines.join('\n'), 72, 145);
 		ctx.beginPath();
 		const imageBuffer = canvas.toBuffer();
 		fs.writeFileSync(pathImg, imageBuffer);
-		return api.sendMessage({ attachment: fs.createReadStream(pathImg) }, threadID, () => fs.unlinkSync(pathImg), messageID);   
-} catch (e) {
-	console.log(e)
-	return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
-}
+		return api.sendMessage({ attachment: fs.createReadStream(pathImg) }, threadID, () => fs.unlinkSync(pathImg), messageID);
+	} catch (e) {
+		console.log(e)
+		return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
+	}
 }

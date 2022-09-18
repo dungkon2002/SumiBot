@@ -6,10 +6,10 @@ export default {
 	description: "Kiểm tra số tiền của bản thân hoặc người được tag",
 	shortDescription: "Kiểm tra số tiền",
 	usages: [
-	    'money: Kiểm tra số tiền của bản thân',
-	    'money @tag: Kiểm tra số tiền của người được tag',
+		'money: Kiểm tra số tiền của bản thân',
+		'money @tag: Kiểm tra số tiền của người được tag',
 		'money @tag nhiều người: Kiểm tra số tiền của người được tag'
-    ],
+	],
 	cooldowns: 5
 };
 
@@ -42,7 +42,7 @@ export async function run({ api, event, args, utils, UsersAll }) {
 			return api.sendMessage(`» SUMICHAN «\nSố tiền của thành viên: \n${msg}`, event.threadID, event.messageID);
 		}
 		else return utils.throwError(this.config.name, event.threadID, event.messageID);
-} catch (e) {
-	return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
-}
+	} catch (e) {
+		return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
+	}
 }

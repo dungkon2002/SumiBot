@@ -14,7 +14,7 @@ import axios from "axios"
 import ps, { dirname } from "path";
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
-export async function run({ api, event, ThreadsAll, args, UsersAll, utils })  {
+export async function run({ api, event, ThreadsAll, args, UsersAll, utils }) {
     const { threadID, messageID, senderID, mentions, type, messageReply } = event;
     let targetID = senderID;
     if (type == 'message_reply') {

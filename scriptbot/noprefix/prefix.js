@@ -11,9 +11,9 @@ export default {
 export async function noprefix({ api, event, ThreadSettings, global }) {
 	const threadSetting = ThreadSettings.find(item => item.id == event.threadID) || {};
 	const prefix = (threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : global.config.PREFIX
-	if(event.body == "prefix" || event.body == "Prefix") {
+	if (event.body == "prefix" || event.body == "Prefix") {
 		return api.sendMessage(`[ PREFIX ]\n» Prefix hiện tại của nhóm : ${prefix}\n» Prefix mặc định trên hệ thống bot: ${global.config.PREFIX}`, event.threadID, event.messageID);
 	}
 }
 
-export async function run() {}
+export async function run() { }

@@ -7,7 +7,7 @@ export default {
 	shortDescription: "Comment trên pỏnhub",
 	usages: [
 		'phub <xxxx>: nội dung'
-    ],
+	],
 	cooldowns: 5
 };
 
@@ -43,16 +43,16 @@ export async function wrapText(ctx, text, maxWidth) {
 		}
 		return resolve(lines);
 	});
-} 
+}
 
 export async function run({ api, event, args, utils, UsersAll }) {
 	try {
-    
+
 		let { senderID, threadID, messageID } = event;
 		const UsersData = UsersAll.find(item => item.id == senderID);
 		let pathImg = ps.resolve(__dirname, 'cache', `porn.png`);
 		let avatar = ps.resolve(__dirname, 'cache', `avt.png`);
-		const __root =ps. resolve(__dirname, "cache", "rank");
+		const __root = ps.resolve(__dirname, "cache", "rank");
 		let text = args.join(" ");
 		let name = UsersData.name
 		if (!text) return api.sendMessage("Nhập nội dung comment trên pỏnhub", threadID, messageID);
@@ -82,14 +82,14 @@ export async function run({ api, event, args, utils, UsersAll }) {
 			ctx.font = `regular ${fontSize}px Arial`;
 		}
 		const lines = await this.wrapText(ctx, text, 1160);
-		ctx.fillText(lines.join('\n'), 30,430);
+		ctx.fillText(lines.join('\n'), 30, 430);
 		ctx.beginPath();
 		const imageBuffer = canvas.toBuffer();
 		fs.writeFileSync(pathImg, imageBuffer);
 		fs.removeSync(avatar);
-		return api.sendMessage({ attachment: fs.createReadStream(pathImg) }, threadID, () => fs.unlinkSync(pathImg), messageID);        
-	
-} catch (e) {
-	return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
-}
+		return api.sendMessage({ attachment: fs.createReadStream(pathImg) }, threadID, () => fs.unlinkSync(pathImg), messageID);
+
+	} catch (e) {
+		return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
+	}
 }

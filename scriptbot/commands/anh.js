@@ -1,14 +1,14 @@
 export default {
-	name: "ảnh",
-	version: "1.0.1",
-	hasPermssion: 0,
-	credits: "DũngKon",
-	description: "Thư viện Ảnh ",
-	shortDescription: "Thư viện Ảnh",
-	usages: [
-	    'ảnh: xem ảnh theo stt'
+    name: "ảnh",
+    version: "1.0.1",
+    hasPermssion: 0,
+    credits: "DũngKon",
+    description: "Thư viện Ảnh ",
+    shortDescription: "Thư viện Ảnh",
+    usages: [
+        'ảnh: xem ảnh theo stt'
     ],
-	cooldowns: 5
+    cooldowns: 5
 };
 import axios from "axios";
 import fs from "fs-extra"
@@ -17,7 +17,7 @@ import { fileURLToPath } from 'url';
 import request from 'request';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export async function handleReply({ api, event, handleReply }) {
-    const { threadID, messageID, body} = event
+    const { threadID, messageID, body } = event
     const input = body.trim();
     var b;
     switch (input) {
@@ -60,10 +60,10 @@ export async function handleReply({ api, event, handleReply }) {
 };
 
 export async function run({ event, api, args, client }) {
-    const { threadID, messageID, body} = event
+    const { threadID, messageID, body } = event
     var msg = "» Danh sách các ảnh hiện có\n\n» 1.Gái\n» 2.Trai\n» 3.Nobra\n» 4.Dú\n» 5.Mông\n» 6.Loli\n» 7.Nude\n» 8.Beo\n\n» Hãy reply tin nhắn này kèm stt ảnh bạn muốn xem."
     api.sendMessage(msg, event.threadID, ((api, args) => {
-            client.handleReply.push({
+        client.handleReply.push({
             name: this.default.name,
             messageID: args.messageID,
             author: event.senderID,

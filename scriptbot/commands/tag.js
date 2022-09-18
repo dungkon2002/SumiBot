@@ -1,16 +1,16 @@
 export default {
-    name: "tag",
-    version: "1.0.0",
-    hasPermssion: 1,
-    credits: "Dũngkon",
-    description: "Tag liên tục người bạn tag trong 5 lần\nCó thể gọi là gọi hồn người đó",
-    commandCategory: "group",
-    usages: "taglientuc @mention",
-    cooldowns: 5,
-    dependencies: {
-        "fs-extra": "",
-        "axios": ""
-    }
+  name: "tag",
+  version: "1.0.0",
+  hasPermssion: 1,
+  credits: "Dũngkon",
+  description: "Tag liên tục người bạn tag trong 5 lần\nCó thể gọi là gọi hồn người đó",
+  commandCategory: "group",
+  usages: "taglientuc @mention",
+  cooldowns: 5,
+  dependencies: {
+    "fs-extra": "",
+    "axios": ""
+  }
 }
 
 export async function run({ api, event, UsersAll, ThreadsAll, args }) {
@@ -23,7 +23,7 @@ export async function run({ api, event, UsersAll, ThreadsAll, args }) {
   }
   if (!global.client.modulesTaglientuc) global.client.modulesTaglientuc = [];
   const dataTaglientuc = global.client.modulesTaglientuc;
-  if (!dataTaglientuc.some(item => item.threadID == threadID)) dataTaglientuc.push({ threadID, targetID: []});
+  if (!dataTaglientuc.some(item => item.threadID == threadID)) dataTaglientuc.push({ threadID, targetID: [] });
   const thisTaglientuc = dataTaglientuc.find(item => item.threadID == threadID);
   if (args[0] == "stop") {
     if (args[1] == "all") {
@@ -34,7 +34,7 @@ export async function run({ api, event, UsersAll, ThreadsAll, args }) {
       if (Object.keys(mentions).length == 0) return reply("Hãy tag người bạn muốn dừng gọi hồn");
       let msg = "";
       for (let id in mentions) {
-        
+
         const userName = mentions[id].replace("@", "");
         if (!thisTaglientuc.targetID.includes(id)) msg += `\n${userName} hiện tại không bị gọi hồn`;
         else {
@@ -48,18 +48,18 @@ export async function run({ api, event, UsersAll, ThreadsAll, args }) {
   else {
     let solantag = args[args.length - 2];
     let time = args[args.length - 1];
-                  // Check syntax
+    // Check syntax
     if (Object.keys(mentions) == 0) return reply("Vui lòng tag người bạn muốn gọi hồn");
     if (!solantag || !time) return global.utils.throwError(this.config.name, threadID, messageID);
     if (isNaN(solantag)) return reply("Số lần tag phải là một con số");
     if (isNaN(time)) return reply("Thời gian giữa mỗi lần tag phải là một con số");
-    time = time*1000;
+    time = time * 1000;
     const target = Object.keys(mentions)[0];
     if (thisTaglientuc.targetID.includes(target)) return reply("Người này đang được gọi hồn");
     thisTaglientuc.targetID.push(target);
-    reply(`Đã thêm ${mentions[target].replace("@", "")} vào danh sách gọi hồn với:\nSố lần tag là: ${solantag}\nThời gian giữa các lần tag là ${time/1000} giây`);
+    reply(`Đã thêm ${mentions[target].replace("@", "")} vào danh sách gọi hồn với:\nSố lần tag là: ${solantag}\nThời gian giữa các lần tag là ${time / 1000} giây`);
     const noidungtag = args.slice(0, args.length - 2).join(" ").replace("@", "");
-    
+
     let i = 0;
     while (true) {
       await delay(time);
