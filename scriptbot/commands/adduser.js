@@ -6,9 +6,9 @@ export default {
 	description: "Thêm thành viên bằng [link/uid]",
 	shortDescription: "Thêm thành viên",
 	usages: [
-	    'adduser <xxxx>: thêm thành viên bằng link facebook',
-	    'adduser <xxxx>: thêm thành viên bằng uid facebook'
-    ],
+		'adduser <xxxx>: thêm thành viên bằng link facebook',
+		'adduser <xxxx>: thêm thành viên bằng uid facebook'
+	],
 	cooldowns: 5
 };
 

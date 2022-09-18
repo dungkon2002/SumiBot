@@ -15,10 +15,10 @@ import fs from "fs-extra"
 import ps, { dirname } from "path";
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
-export async function run({api, event}) {
+export async function run({ api, event }) {
     try {
         return api.sendMessage("Đang khởi động lại Bot SumiChan", event.threadID, () => process.exit(0), event.messageID);
-} catch (e) {
-    return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
-}
+    } catch (e) {
+        return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
+    }
 }

@@ -1,6 +1,6 @@
 import logger from "../../utils/log.js";
 
-export default function({
+export default function ({
     api,
     global,
     client,
@@ -11,7 +11,7 @@ export default function({
     UserThread
 }) {
 
-    return async function({
+    return async function ({
         event
     }) {
         try {

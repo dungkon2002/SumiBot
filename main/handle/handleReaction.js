@@ -1,4 +1,4 @@
-export default function({
+export default function ({
     api,
     global,
     client,
@@ -8,7 +8,7 @@ export default function({
     ThreadSettings
 }) {
 
-    return async function({
+    return async function ({
         event
     }) {
         const {

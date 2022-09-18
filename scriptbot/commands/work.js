@@ -6,12 +6,12 @@ export default {
 	description: "Có làm thì mới có ăn!",
 	shortDescription: "Có làm thì mới có ăn!",
 	usages: [
-	    'work: làm ziệc'
-    ],
-    cooldowns: 5,
-    data: {
-        cooldownTime: 1200000
-    }
+		'work: làm ziệc'
+	],
+	cooldowns: 5,
+	data: {
+		cooldownTime: 1200000
+	}
 };
 
 import fs from "fs-extra"
@@ -20,14 +20,14 @@ export async function run({ api, event, client, UsersAll }) {
 		const { threadID, messageID } = event;
 		const cooldown = this.default.data.cooldownTime;
 		const UsersData = UsersAll.find(item => item.id == event.senderID);
-		if(!UsersData.Data.TimeWork) UsersData.Data.TimeWork = 0;
-		fs.writeFileSync(client.dirMain + "/data/Users.json",JSON.stringify(UsersAll, null, "\t"));
+		if (!UsersData.Data.TimeWork) UsersData.Data.TimeWork = 0;
+		fs.writeFileSync(client.dirMain + "/data/Users.json", JSON.stringify(UsersAll, null, "\t"));
 		const data = UsersData.Data.TimeWork;
 		if (typeof data !== undefined && cooldown - (Date.now() - data) > 0) {
 			var time = cooldown - (Date.now() - data),
 				minutes = Math.floor(time / 60000),
 				seconds = ((time % 60000) / 1000).toFixed(0);
-			
+
 			return api.sendMessage(`Bạn đang trong thời gian chờ\nVui lòng thử lại sau: ${minutes} phút ${(seconds < 10 ? "0" : "")}${seconds} giây!`, event.threadID, event.messageID);
 		}
 		else {
@@ -53,10 +53,10 @@ export async function run({ api, event, client, UsersAll }) {
 			return api.sendMessage(`Bạn ${job[Math.floor(Math.random() * job.length)]} và đã nhận được số tiền là: ${amount} coins`, threadID, async () => {
 				UsersData.money = parseInt(UsersData.money) + parseInt(amount)
 				UsersData.Data.TimeWork = Date.now()
-				fs.writeFileSync(client.dirMain + "/data/Users.json",JSON.stringify(UsersAll, null, "\t"));
+				fs.writeFileSync(client.dirMain + "/data/Users.json", JSON.stringify(UsersAll, null, "\t"));
 			}, messageID);
 		}
-} catch (e) {
-	return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
-}
+	} catch (e) {
+		return api.sendMessage(`có cái nịt`, event.threadID, event.messageID);
+	}
 }

@@ -1,4 +1,4 @@
-export default function({
+export default function ({
     api,
     global,
     client,
@@ -7,7 +7,7 @@ export default function({
     UsersAll,
     ThreadSettings
 }) {
-    return async function({
+    return async function ({
         event
     }) {
         if (!event.messageReply) return;

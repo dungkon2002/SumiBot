@@ -1,14 +1,14 @@
 import logger from "../../utils/log.js";
 import fs from "fs-extra";
 
-export default function({
+export default function ({
     api,
     client,
     ThreadsAll,
     UsersAll,
     UserThread
 }) {
-    return async function({
+    return async function ({
         event
     }) {
 
