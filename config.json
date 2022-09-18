@@ -1,0 +1,14 @@
+{
+    "DeveloperMode": true,
+    "selfListen": true,
+    "NOTIFICATION": true,
+    "EMAIL": "",
+    "PASSWORD": "",
+    "OTPKEY": "",
+    "BOTNAME": "𝑺𝒖𝒎𝒊𝑪𝒉𝒂𝒏",
+    "PREFIX": "/",
+    "ADMINBOT": [
+        "100040705111269",
+        "UIDADMIN2"
+    ]
+}
